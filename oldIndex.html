@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>jQuery FaceDetection Examples</title>
+</head>
+<body>
+    
+    <div styl="width:80vw" id="mergeContainer">
+        <img id="picture"  src="img/face.jpg" style="position:absolute;left:0px;top:0px">
+        <img id="mask" src="img/self.png" style="position:absolute;top:0px;left:0px;width:40vw;">
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="jquery.facedetection.js"></script> 
+    <script src="webcam.js"></script> 
+
+    <div id="my_camera" style="position:absolute;top:0px;left:0px;width:100vw;height:calc(80vw * 0.562);z-index:1000" onClick="take_snapshot()">
+
+    </div>    
+        <input type="button" value="Take HD Snapshot" onClick="take_snapshot()" style="position:absolute;left:100;top:100;z-index:10000">
+
+
+    <!-- Configure a few settings and attach camera -->
+    <script language="JavaScript">
+    setInterval(function(){
+
+    }, 500);
+        Webcam.set({
+            dest_width: 1280,
+            dest_height: 720,
+            image_format: 'jpeg',
+            jpeg_quality: 100
+        });
+        Webcam.attach( '#my_camera' );
+    </script>
+    
+    <!-- A button for taking snaps -->
+    
+    <!-- Code to handle taking the snapshot and displaying it locally -->
+    <script language="JavaScript">
+        function take_snapshot() {
+            // take snapshot and get image data
+            Webcam.snap( function(data_uri) {
+                // display results in page
+             //   $("#picture").attr("src", data_uri);                
+                $("#picture").css("visibility", "visible");
+                $("#my_camera").css("visibility", "hidden");
+                $('#picture').faceDetection({
+                    complete: function (faces) {
+                        console.log(faces);
+                        var x = faces[0].width/($("#mask").width()/6);
+                        console.log(x);
+                        $('#picture').width($('#picture').width() / x)
+                        $("#picture").css({top:($("#mask").height()/3.5) - (faces[0].y/x), left: $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x  + "px"});
+                        //ctx.drawImage(img, 90, 130, 50, 60, 10, 10, 50, 60);                                                
+                    },
+                    error:function (code, message) {
+                        alert('Error: ' + message);
+                    }
+                });
+
+            });
+        }
+      
+    </script>
+</body>
+</html>
