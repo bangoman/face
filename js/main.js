@@ -25,7 +25,7 @@
                     mask.src = "img/self.png";    
                 }, false);
                 $('#picture')[0] = face;
-                face.src = "img/face.jpg";
+                face.src = "img/face3.jpg";
          //       $('#picture').width($('#picture').width() / x)
            //     $("#picture").css({top:($("#mask").height()/3.5) - (faces[0].y/x), left: $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x  + "px"});
                 //ctx.drawImage(img, 90, 130, 50, 60, 10, 10, 50, 60); 
