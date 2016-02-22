@@ -15,6 +15,7 @@ app.controller('faceCtrl', ['$scope', function($scope) {
     
     $scope.makeSnapshot = function() {
         if (_video) {
+            console.log("_video = ", _video);
             $scope.patCanvas = document.querySelector('#canvasDemo');
             if (!$scope.patCanvas) return;
 
@@ -22,18 +23,23 @@ app.controller('faceCtrl', ['$scope', function($scope) {
             $scope.patCanvas.height = _video.height;
             $scope.ctxPat = $scope.patCanvas.getContext('2d');
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
-            $("#picture").src = $scope.patCanvas.toDataURL();
+            $("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
+            $scope.srcTest = $("#picture").src;
+            console.log("$scope.srcTest = ", $scope.srcTest);
             setTimeout(function () {
-                console.log("#picture = ",  $("#picture").src);
-                $scope.mergeImages();
-            },30   );
+                console.log("#picture = ",  $scope.patCanvas.toDataURL("image/jpeg"));
+                setTimeout(function () {
+                    $scope.mergeImages();
+                }, 30);
+            },30 );
             console.log($scope.face);
         }
     };
 
     $scope.mergeImages = function(){
 		$scope.showWebcam = false;
-    	$('#picture').faceDetection({
+        console.log($('#picture').src, $scope.srcTest);
+    	$("#picture").faceDetection({
             complete: function (faces) {
                 console.log(faces[0]);
                 var x = faces[0].width/($("#mask").width()/6);
