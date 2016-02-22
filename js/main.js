@@ -12,12 +12,19 @@
                 var y = faces[0].height/($("#mask").height()/6);
                 console.log(x);
                 var ctx = document.getElementById("canvas").getContext("2d");
-                var mask = new Image();
-                mask.addEventListener("load", function() {
-                    console.log(mask);
-                    ctx.drawImage(mask,  200, 400);
+                var face = new Image();
+                face.addEventListener("load", function() {
+                    console.log(face);
+                    ctx.drawImage(face,   $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x ,($("#mask").height()/3.5) - (faces[0].y/x),
+                        $('#picture').width()/x, $('#picture').height()/y);
+
+                    var mask = new Image();
+                    mask.addEventListener("load", function() {
+                        ctx.drawImage(mask, 0, 0, 500, 375 );                        
+                    }, false);
+                    mask.src = "img/self.png";    
                 }, false);
-                mask.src = "img/self.png";
+                face.src = "img/face.jpg";
          //       $('#picture').width($('#picture').width() / x)
            //     $("#picture").css({top:($("#mask").height()/3.5) - (faces[0].y/x), left: $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x  + "px"});
                 //ctx.drawImage(img, 90, 130, 50, 60, 10, 10, 50, 60); 
@@ -38,6 +45,6 @@ $(document).ready(function(){
         dest_height: 720,
         image_format: 'jpeg',
         jpeg_quality: 100
-});
-Webcam.attach( '#my_camera' );
+    });
+    Webcam.attach( '#my_camera' );
 });
