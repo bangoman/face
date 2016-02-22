@@ -24,8 +24,6 @@ app.controller('faceCtrl', ['$scope', function($scope) {
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
 
             $("#picture").src = $scope.patCanvas.toDataURL();
-            $scope.ctx = document.getElementById('canvas').getContext('2d');
-            $scope.ctx.drawImage($scope.face, 0, 0, _video.width, _video.height);
             console.log($scope.face);
             $scope.mergeImages();
         }
