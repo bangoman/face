@@ -22,10 +22,12 @@ app.controller('faceCtrl', ['$scope', function($scope) {
             $scope.patCanvas.height = _video.height;
             $scope.ctxPat = $scope.patCanvas.getContext('2d');
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
-
             $("#picture").src = $scope.patCanvas.toDataURL();
+            setTimeout(function () {
+                console.log("#picture = ",  $("#picture").src);
+                $scope.mergeImages();
+            },30   );
             console.log($scope.face);
-            $scope.mergeImages();
         }
     };
 
@@ -38,10 +40,9 @@ app.controller('faceCtrl', ['$scope', function($scope) {
                 var y = faces[0].height/($("#mask").height()/4.5);
                 console.log(x);
                 var ctx = document.getElementById("canvas").getContext("2d");
-                var face = new Image();
-                face.addEventListener("load", function() {
-                    console.log(face);
-                    ctx.drawImage(face,   $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x ,($("#mask").height()/3.5) - (faces[0].y/x),
+                $scope.face.addEventListener("load", function() {
+                    console.log($scope.face);
+                    ctx.drawImage($scope.face,   $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x ,($("#mask").height()/3.5) - (faces[0].y/x),
                         $('#picture').width()/x, $('#picture').height()/y);
 
                     var mask = new Image();
@@ -50,8 +51,7 @@ app.controller('faceCtrl', ['$scope', function($scope) {
                     }, false);
                     mask.src = "img/self.png";    
                 }, false);
-                $('#picture')[0] = face;
-                face.src = $("#picture").attr('src');
+                $scope.face.src = $('#picture').attr('src'); 
             },
             error:function (code, message) {
                 alert('Error: ' + message);
