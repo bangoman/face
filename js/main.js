@@ -1,7 +1,7 @@
  function take_snapshot() {
     Webcam.snap( function(data_uri) {
         // display results in page
-     //   $("#picture").attr("src", data_uri);   
+      //  $("#picture").attr("src", data_uri);   
         $("#mergeContainer").css("visibility", "hidden");    
         $("#canvas").css("visibility", "visible");
         $("#my_camera").css("visibility", "hidden");
@@ -25,7 +25,7 @@
                     mask.src = "img/self.png";    
                 }, false);
                 $('#picture')[0] = face;
-                face.src = "img/face3.jpg";
+                face.src = $("#picture").attr('src'); 
          //       $('#picture').width($('#picture').width() / x)
            //     $("#picture").css({top:($("#mask").height()/3.5) - (faces[0].y/x), left: $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x  + "px"});
                 //ctx.drawImage(img, 90, 130, 50, 60, 10, 10, 50, 60); 
