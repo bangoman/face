@@ -20,7 +20,7 @@
 
                     var mask = new Image();
                     mask.addEventListener("load", function() {
-                        ctx.drawImage(mask, 0, 0, 500, 375 );                        
+                        ctx.drawImage(mask, 0, 0, $("#mask").width(), $("#mask").height() );                        
                     }, false);
                     mask.src = "img/self.png";    
                 }, false);
