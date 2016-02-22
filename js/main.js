@@ -12,14 +12,12 @@
                 var y = faces[0].height/($("#mask").height()/6);
                 console.log(x);
                 var ctx = document.getElementById("canvas").getContext("2d");
-                var img = new Image();
-                img.addEventListener("load", function() {
-                    ctx.drawImage(img,  $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x ,($("#mask").height()/3.5) - (faces[0].y/x),
-                        $('#picture').width()/x, $('#picture').height()/y );
-                    console.log(img);
-                    console.log($("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x);
+                var mask = new Image();
+                mask.addEventListener("load", function() {
+                    console.log(mask);
+                    ctx.drawImage(mask,  200, 400);
                 }, false);
-                img.src = "img/face.jpg";
+                mask.src = "img/self.png";
          //       $('#picture').width($('#picture').width() / x)
            //     $("#picture").css({top:($("#mask").height()/3.5) - (faces[0].y/x), left: $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x  + "px"});
                 //ctx.drawImage(img, 90, 130, 50, 60, 10, 10, 50, 60); 
