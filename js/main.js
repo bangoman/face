@@ -9,7 +9,7 @@
             complete: function (faces) {
                 console.log(faces);
                 var x = faces[0].width/($("#mask").width()/6);
-                var y = faces[0].height/($("#mask").height()/6);
+                var y = faces[0].height/($("#mask").height()/4.5);
                 console.log(x);
                 var ctx = document.getElementById("canvas").getContext("2d");
                 var face = new Image();
@@ -24,6 +24,7 @@
                     }, false);
                     mask.src = "img/self.png";    
                 }, false);
+                $('#picture')[0] = face;
                 face.src = "img/face.jpg";
          //       $('#picture').width($('#picture').width() / x)
            //     $("#picture").css({top:($("#mask").height()/3.5) - (faces[0].y/x), left: $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x  + "px"});
