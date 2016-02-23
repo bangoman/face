@@ -27,7 +27,6 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
             scope: 'publish_actions,user_photos', 
             return_scopes: true
         });
-        var blob = dataURItoBlob($scope.finalImg.attr('src'));
         Facebook.api(
             "/" + $scope.userId + "/albums",
             function (response) {
@@ -39,7 +38,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
                         "/" + $scope.album[0].id + "/photos",
                         "POST",
                         {
-                            "source": blob
+                            "source": $scope.finalImg.attr('src')
                         },
                         function (response) {
                           if (response && !response.error) {
