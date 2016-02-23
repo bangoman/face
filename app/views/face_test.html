@@ -11,8 +11,28 @@
     </div>
   </md-toolbar>
   <md-content>
-
+    hallo
   </md-content>
+</div>
+
+<div layout="row">
+  <md-sidenav md-component-id="left" class="md-sidenav-left">
+    Left Nav!
+  </md-sidenav>
+  <md-content>
+    Center Content
+    <md-button ng-click="openLeftMenu()">
+      Open Left Menu
+    </md-button>
+  </md-content>
+  <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
+    <form>
+      <md-input-container>
+        <label for="testInput">Test input</label>
+        <input id="testInput" type="text" ng-model="data" md-autofocus>
+      </md-input-container>
+    </form>
+  </md-sidenav>
 </div>
 
 
