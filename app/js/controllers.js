@@ -6,7 +6,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
         patData = null;
     $scope.patOpts = {x: 0, y: 0, w: 25, h: 25};
     $scope.face = new Image();
-    
+
 	$scope.onSuccess = function () {
         _video = $scope.channel.video;
         $scope.$apply(function() {
@@ -14,17 +14,6 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
             $scope.patOpts.h = _video.height;
         });
     };
-
-   $scope.login = function () {
-        Facebook.login(function(response) {
-            if (response.status == 'connected') {
-                $scope.connected = true;
-            } else {
-                $scope.connected = false;
-            }
-        });
-    };
-
 
     $scope.openLeftMenu = function() {
         $mdSidenav('left').toggle();
