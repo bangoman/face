@@ -3,7 +3,7 @@
   <md-button ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
     Take a shoot!
   </md-button>
-  <md-button ng-click="snapShotHasMade = false" ng-if="snapShotHasMade">
+  <md-button ng-click="tryAgain()" ng-if="snapShotHasMade">
     Try again!
   </md-button>
 </div>
@@ -30,7 +30,7 @@
 </div>
 
 <div class="container">
-    <img id="finalImg" src="">
+    <img id="finalImg" ng-show="snapShotHasMade" src="">
     <webcam 
         ng-show="!snapShotHasMade"
         id="webcam"
