@@ -3,7 +3,7 @@
   <md-button ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
     Take a shoot!
   </md-button>
-  <md-button ng-click="!snapShotHasMade" ng-if="snapShotHasMade">
+  <md-button ng-click="snapShotHasMade = false" ng-if="snapShotHasMade">
     Try again!
   </md-button>
 </div>
