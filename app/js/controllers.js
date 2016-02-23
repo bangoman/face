@@ -1,17 +1,12 @@
 app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
  function($scope, $window, $mdSidenav, Facebook) {
-    $scope.showResults = false;
+    $scope.snapShotHasMade = false;
 	$scope.showWebcam = true;
 	var _video = null,
         patData = null;
     $scope.patOpts = {x: 0, y: 0, w: 25, h: 25};
     $scope.face = new Image();
-    $scope.myChannel = {
-        // the fields below are all optional
-        videoHeight: 800,
-        videoWidth: 600,
-        video: null // Will reference the video element on success
-      };
+    
 	$scope.onSuccess = function () {
         _video = $scope.channel.video;
         $scope.$apply(function() {
@@ -36,7 +31,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
     };
 
     $scope.makeSnapshot = function() {
-        $scope.showResults = true;
+        $scope.snapShotHasMade = true;
         if (_video) {
             $scope.patCanvas = document.querySelector('#canvas');
             if (!$scope.patCanvas) return;
