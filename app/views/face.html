@@ -30,8 +30,7 @@
 </div>
 
 <div class="container">
-    <canvas id='canvas' ng-show="snapShotHasMade">
-    </canvas>
+    <img id="finalImg" src="">
     <webcam 
         ng-show="!snapShotHasMade"
         id="webcam"
@@ -52,3 +51,6 @@
     <img id="picture"  src="img/face3.jpg" style="position:absolute; ;top:0px; left:0px; visibility: hidden">
     <img id="mask" src="img/self.png" style="position:absolute; top:0px; left:0px;width:40vw; visibility: hidden">
 </div>
+
+<canvas id='canvas' ng-show="false">
+</canvas>
