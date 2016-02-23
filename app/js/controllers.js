@@ -28,12 +28,11 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
             $scope.patCanvas.height = _video.height;
             $scope.ctxPat = $scope.patCanvas.getContext('2d');
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
-            $("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
+            //$("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
 
 
             $scope.patCanvas.width = 1000;
             $scope.patCanvas.height = 1000;
-            $scope.srcTest = $("#picture").src;
             $scope.mergeImages();
         }
     };
