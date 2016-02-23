@@ -1,6 +1,3 @@
-
-        <button type="button" id="login" ng-click="login()" >login with facebook</button>
-
 <div layout="column" layout-fill>
   <md-toolbar>
     <div class="md-toolbar-tools">
@@ -37,16 +34,16 @@
 -->
 </div>
 
-    <div class="container">
-        <canvas id='canvas' width="1000" height="1000" ng-if="showResults">
+<div class="container">
+        <canvas id='canvas' width="1000" height="1000" ng-show="showResults">
         </canvas>
         <webcam 
+            ng-show="!showResults"
             id="webcam"
             channel="channel" 
             on-streaming="onSuccess()" 
             on-error="onError(err)" 
-            on-stream="onStream(stream)"
-            style="width:100%; height:auto;">
+            on-stream="onStream(stream)">
             <img src="img/target.png" style="position:relative ;width:inherit; height:auto;">
         </webcam>
         <div class="row">
@@ -70,8 +67,8 @@
 
 
 <!-- NOT VISIBLE but necessary -->
-<div id="mergeContainer" style="width:80vw; visibility: hidden">
-    <img id="picture"  src="img/face3.jpg" style="position:absolute; ;top:0px; left:0px; visibility: hidden">
+<div id="mergeContainer" style="width:80vw; ">
+    <img id="picture"  src="img/face3.jpg" style="position:absolute; ;top:0px; left:0px;">
     <img id="mask" src="img/self.png" style="position:absolute; top:0px; left:0px;width:40vw; visibility: hidden">
 </div>
 

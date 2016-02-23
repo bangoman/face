@@ -6,6 +6,12 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
         patData = null;
     $scope.patOpts = {x: 0, y: 0, w: 25, h: 25};
     $scope.face = new Image();
+    $scope.myChannel = {
+        // the fields below are all optional
+        videoHeight: 800,
+        videoWidth: 600,
+        video: null // Will reference the video element on success
+      };
 	$scope.onSuccess = function () {
         _video = $scope.channel.video;
         $scope.$apply(function() {
@@ -40,6 +46,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
             $scope.ctxPat = $scope.patCanvas.getContext('2d');
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
             $("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
+
 
             $scope.patCanvas.width = 1000;
             $scope.patCanvas.height = 1000;
