@@ -12,10 +12,22 @@ app.controller('faceCtrl', ['$scope', function($scope) {
         });
     };
 
+ /*   js.src = "//connect.facebook.net/en_US/sdk.js";
+
+    $window.fbAsyncInit = function() {
+        FB.init({ 
+            appId: '{your-app-id}',
+            status: true, 
+            cookie: true, 
+            xfbml: true,
+            version: 'v2.4'
+        });
+    };*/
+
     
     $scope.makeSnapshot = function() {
         if (_video) {
-            $scope.patCanvas = document.querySelector('#canvasDemo');
+            $scope.patCanvas = document.querySelector('#canvas');
             if (!$scope.patCanvas) return;
 
             $scope.patCanvas.width = _video.width;
@@ -23,6 +35,9 @@ app.controller('faceCtrl', ['$scope', function($scope) {
             $scope.ctxPat = $scope.patCanvas.getContext('2d');
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
             $("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
+
+            $scope.patCanvas.width = 1000;
+            $scope.patCanvas.height = 1000;
             $scope.srcTest = $("#picture").src;
             $scope.mergeImages();
         }
@@ -41,6 +56,7 @@ app.controller('faceCtrl', ['$scope', function($scope) {
 
                     var mask = new Image();
                     mask.addEventListener("load", function() {
+                        console.log($("#mask"));
                         ctx.drawImage(mask, 0, 0, $("#mask").width(), $("#mask").height() );                        
                     }, false);
                     mask.src = "img/self.png";    
