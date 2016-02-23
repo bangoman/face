@@ -1,4 +1,5 @@
-app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', function($scope, $window, $mdSidenav) {
+app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
+ function($scope, $window, $mdSidenav, Facebook) {
 	$scope.showWebcam = true;
 	var _video = null,
         patData = null;
@@ -11,6 +12,14 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', function($scope, 
             $scope.patOpts.h = _video.height;
         });
     };
+
+    $scope.login = function() {
+      // From now on you can use the Facebook service just as Facebook api says
+      Facebook.login(function(response) {
+        console.log(response);
+      });
+    };
+    $scope.login();
 
     $scope.openLeftMenu = function() {
         $mdSidenav('left').toggle();

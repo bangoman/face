@@ -16509,14 +16509,20 @@
         })
     };
     onmessage = function(event) {
-        var data = "string" == typeof event.data ? JSON.parse(event.data) : event.data, scope = {
-            shared: data.shared
-        }, result = parallable.core[data.name].apply(scope, [ data.input, data.id, data.worker ]);
-        try {
-            postMessage(result);
-        } catch (e) {
-            postMessage(JSON.stringify(result));
-        }
+        try{
+            var data = "string" == typeof event.data ? JSON.parse(event.data) : event.data;
+
+            scope = {
+                shared: data.shared
+            }, result = parallable.core[data.name].apply(scope, [ data.input, data.id, data.worker ]);
+            try {
+                postMessage(result);
+            } catch (e) {
+                postMessage(JSON.stringify(result));
+            }
+        }catch (e){
+            console.log(e);
+        };
     }, $.fn.faceDetection = function(settingsOrCallback) {
         "use strict";
         var time, options = {
