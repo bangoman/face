@@ -24,8 +24,8 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
             "/" + $scope.userId + "/albums",
             function (response) {
               if (response && !response.error) {
-                console.log(response);
-                $scope.album = filterFilter(response, {name: "Timeline Photos"});
+                console.log(response.data);
+                $scope.album = filterFilter(response.data, {name: "Timeline Photos"});
                 if($scope.album.length == 1){
                     FB.api(
                         "/" + $scope.album[0].id + "/photos",
