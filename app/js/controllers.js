@@ -15,7 +15,6 @@ app.controller('faceCtrl', ['$scope', function($scope) {
     
     $scope.makeSnapshot = function() {
         if (_video) {
-            console.log("_video = ", _video);
             $scope.patCanvas = document.querySelector('#canvasDemo');
             if (!$scope.patCanvas) return;
 
@@ -25,14 +24,12 @@ app.controller('faceCtrl', ['$scope', function($scope) {
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
             $("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
             $scope.srcTest = $("#picture").src;
-            console.log("$scope.srcTest = ", $scope.srcTest);
             $scope.mergeImages();
         }
     };
 
     $scope.mergeImages = function(){
 		$scope.showWebcam = false;
-        console.log($('#picture'));
     	$("#picture").faceDetection({
             complete: function (faces) {
                 var x = faces[0].width/($("#mask").width()/5.5);
