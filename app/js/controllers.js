@@ -42,13 +42,13 @@ app.controller('faceCtrl', ['$scope', function($scope) {
     	$("#picture").faceDetection({
             complete: function (faces) {
                 console.log(faces[0]);
-                var x = faces[0].width/($("#mask").width()/6);
-                var y = faces[0].height/($("#mask").height()/4.5);
+                var x = faces[0].width/($("#mask").width()/5.5);
+                var y = faces[0].height/($("#mask").height()/4.4);
                 console.log(x);
                 var ctx = document.getElementById("canvas").getContext("2d");
                 $scope.face.addEventListener("load", function() {
                     console.log($scope.face);
-                    ctx.drawImage($scope.face,   $("#mask").width()/1.72 - (faces[0].width/x) - faces[0].x/x ,($("#mask").height()/3.5) - (faces[0].y/x),
+                    ctx.drawImage($scope.face,   $("#mask").width()/1.69 - (faces[0].width/x) - faces[0].x/x ,($("#mask").height()/3.2) - (faces[0].y/x),
                         $('#picture').width()/x, $('#picture').height()/y);
 
                     var mask = new Image();
