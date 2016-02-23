@@ -2,56 +2,48 @@
 <!-- SIDE-NAV -->
 <div layout="column">
   <md-sidenav md-component-id="left" class="md-sidenav-left">
-    choose the background you love the most!
+    choose the background you want to use:
   </md-sidenav>
   <md-content>
     <md-button ng-click="openLeftMenu()">
       choose background
     </md-button>
   </md-content>
-<!--
-  <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
-    <form>
-      <md-input-container>
-        <label for="testInput">Test input</label>
-        <input id="testInput" type="text" ng-model="data" md-autofocus>
-      </md-input-container>
-    </form>
-  </md-sidenav>
--->
 </div>
 
 <div class="container images_container">
-    <div class="row snapshot_row">
-        <div layout="column" layout-fill>
-          <md-button class="snapshot_btn" ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
-            Take a shoot!
-          </md-button>
-          <md-button class="snapshot_btn" ng-click="tryAgain()" ng-if="snapShotHasMade">
-            Try again!
-          </md-button>
-        </div>
+    <div class="row">
+      <div class="snapshot_text">
+        Tap the video to take a picture!
+      </div>
     </div>
     <img id="finalImg" ng-show="snapShotHasMade" src="">
     <webcam 
-        ng-show="!snapShotHasMade"
         id="webcam"
+        ng-show="!snapShotHasMade"
+        ng-click="makeSnapshot()"
         channel="channel" 
         on-streaming="onSuccess()" 
         on-error="onError(err)" 
-        on-stream="onStream(stream)"
-        style="width:100%; height:auto;">
+        on-stream="onStream(stream)">
         <img src="img/target.png" style="position:relative ;width:inherit; height:auto;">
     </webcam>
 </div>
 
-
-
-
-<div class="row">
-  <div class="col-md-4 col-md-push-4">
-    <md-button ng-click="uploadToAlbum()" ng-if="snapShotHasMade">
-      Save to you'r album!
+<div class="bottom_buttons md-headline" ng-if="snapShotHasMade">
+  <div class="row">
+    <md-button class="col-md-4 col-md-push-4 btn save_btn" ng-click="uploadToAlbum()" >
+      upload to facebook!
+    </md-button>
+  </div>
+  <div class="row">
+    <div class="text-center">
+      OR
+    </div>
+  </div>
+  <div class="row">  
+    <md-button class="col-md-4 col-md-push-4 btn try_again_btn" ng-click="tryAgain()">
+      Try again!
     </md-button>
   </div>
 </div>
@@ -59,7 +51,9 @@
 
 
 
-<!-- NOT VISIBLE but necessary -->
+
+
+<!-- not visible but NECESSARY -->
 <div id="mergeContainer" style="width:80vw; visibility: hidden">
     <img id="picture"  src="img/face3.jpg" style="position:absolute; ;top:0px; left:0px; visibility: hidden">
     <img id="mask" src="img/self.png" style="position:absolute; top:0px; left:0px;width:40vw; visibility: hidden">
