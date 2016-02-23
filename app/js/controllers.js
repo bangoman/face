@@ -7,6 +7,19 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
     $scope.patOpts = {x: 0, y: 0, w: 25, h: 25};
     $scope.face = new Image();
     $scope.finalImg = $("#finalImg");
+    $scope.userId = null;
+
+    Facebook.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            $scope.userId = response.authResponse.userID;
+            console.log($scope.userId);
+            //var accessToken = response.authResponse.accessToken;
+        } else if (response.status === 'not_authorized') {
+            console.log(response);
+        } else {
+            console.log(response);
+        }
+     });
 
     $scope.tryAgain = function() {
         $scope.snapShotHasMade = false;
