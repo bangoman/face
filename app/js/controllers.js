@@ -1,6 +1,6 @@
 app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
  function($scope, $window, $mdSidenav, Facebook) {
-    $scope.showResults = false;
+    $scope.snapShotHasMade = false;
 	$scope.showWebcam = true;
 	var _video = null,
         patData = null;
@@ -31,7 +31,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
     };
 
     $scope.makeSnapshot = function() {
-        $scope.showResults = true;
+        $scope.snapShotHasMade = true;
         if (_video) {
             $scope.patCanvas = document.querySelector('#canvas');
             if (!$scope.patCanvas) return;
