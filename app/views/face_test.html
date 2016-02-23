@@ -1,17 +1,11 @@
 
 <div layout="column" layout-fill>
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <span>?</span>
-      <!-- fill up the space between left and right area -->
-      <span flex class="text-center">PAINT MY FACE</span>
-      <md-button ng-click="makeSnapshot()">
-        Take a shoote!
-      </md-button>
-    </div>
-  </md-toolbar>
-  <md-content>
-  </md-content>
+  <md-button ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
+    Take a shoote!
+  </md-button>
+  <md-button ng-click="snapShotHasMade = false" ng-if="snapShotHasMade">
+    Try again!
+  </md-button>
 </div>
 
 <div layout="column">
@@ -36,10 +30,10 @@
 </div>
 
     <div class="container">
-        <canvas id='canvas' width="1000" height="1000" ng-show="showResults">
+        <canvas id='canvas' ng-show="snapShotHasMade">
         </canvas>
         <webcam 
-            ng-show="!showResults"
+            ng-show="!snapShotHasMade"
             id="webcam"
             channel="channel" 
             on-streaming="onSuccess()" 
@@ -50,7 +44,7 @@
         </webcam>
         <div class="row">
           <div class="col-md-4 col-md-push-4">
-            <md-button ng-click="showResults = false">
+            <md-button ng-click="snapShotHasMade = false">
               Try again!
             </md-button>
           </div>
