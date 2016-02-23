@@ -12,5 +12,9 @@ app.config(['$routeProvider', function($routeProvider) {
    $routeProvider.when('/face', {
     templateUrl: 'app/views/face.html',
     controller: 'faceCtrl'
-  });
+  })
+   .when('/faceTest', {
+    templateUrl: 'app/views/face_test.html',
+    controller: 'faceCtrl'
+  })
 }]);
