@@ -1,13 +1,5 @@
 
-<div layout="column" layout-fill>
-  <md-button ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
-    Take a shoot!
-  </md-button>
-  <md-button ng-click="tryAgain()" ng-if="snapShotHasMade">
-    Try again!
-  </md-button>
-</div>
-
+<!-- SIDE-NAV -->
 <div layout="column">
   <md-sidenav md-component-id="left" class="md-sidenav-left">
     choose the background you love the most!
@@ -30,6 +22,16 @@
 </div>
 
 <div class="container">
+    <div class="row snapshot_row">
+        <div layout="column" layout-fill>
+          <md-button ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
+            Take a shoot!
+          </md-button>
+          <md-button ng-click="tryAgain()" ng-if="snapShotHasMade">
+            Try again!
+          </md-button>
+        </div>
+    </div>
     <img id="finalImg" ng-show="snapShotHasMade" src="">
     <webcam 
         ng-show="!snapShotHasMade"
