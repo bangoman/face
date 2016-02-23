@@ -69,9 +69,13 @@ video {
   font-weight: bold;
 }
 .bottom_buttons .save_btn {
-  background-color: #27A1C8;
+  color: #fff;
+  background-color: #425F9C;
+}
+.bottom_buttons .save_btn:hover {
+  color: #425F9C;
 }
 .bottom_buttons .try_again_btn {  
-  background-color: #5CFFE1;
+  background-color: #63BF3F;
 }
 
