@@ -30,5 +30,11 @@
 }
 
 video {
+    width: 100%;
+    height: auto;
+    margin-top: -850px;
     vertical-align: baseline;
 }
+
+/* === MAIN PAGE STYLE === */
+
