@@ -36,9 +36,10 @@
 </div>
 
     <div class="container">
-        <canvas id='canvas' width="1000" height="1000" ng-if="showResults">
+        <canvas id='canvas' width="1000" height="1000" ng-show="showResults">
         </canvas>
         <webcam 
+            ng-show="!showResults"
             id="webcam"
             channel="channel" 
             on-streaming="onSuccess()" 
