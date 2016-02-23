@@ -43,3 +43,8 @@ canvas {
   width: inherit;
   height: auto;
 }
+
+.snapshot_row {
+  z-index: 10000;
+  /*margin-bottom: -60px;*/
+}
