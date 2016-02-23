@@ -5,9 +5,10 @@ var app = angular.module('app', [
   'ngRoute',
   'myApp.version',
   'webcam',
-  'ngMaterial'
+  'ngMaterial',
+  'facebook'
 ]);
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider','FacebookProvider', function($routeProvider, FacebookProvider) {
   $routeProvider.otherwise({redirectTo: '/face'});
    $routeProvider.when('/face', {
     templateUrl: 'app/views/face.html',
@@ -16,5 +17,6 @@ app.config(['$routeProvider', function($routeProvider) {
    .when('/faceTest', {
     templateUrl: 'app/views/face_test.html',
     controller: 'faceCtrl'
-  })
+  });
+   FacebookProvider.init('1060878183958426');
 }]);
