@@ -38,8 +38,7 @@
     <div class="container">
         <canvas id='canvas' width="1000" height="1000" ng-if="showResults">
         </canvas>
-        <webcam  
-            ng-if="!showResults"
+        <webcam 
             id="webcam"
             channel="channel" 
             on-streaming="onSuccess()" 
