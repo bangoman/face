@@ -20,7 +20,6 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
     };
 
     $scope.makeSnapshot = function() {
-        $scope.snapShotHasMade = true;
         if (_video) {
             $scope.patCanvas = document.querySelector('#canvas');
             if (!$scope.patCanvas) return;
@@ -43,6 +42,9 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
 		$scope.showWebcam = false;
     	$("#picture").faceDetection({
             complete: function (faces) {
+                if(faces.length > 0){
+                    $scope.snapShotHasMade = true;
+                };
                 var x = faces[0].width/($("#mask").width()/5.5);
                 var y = faces[0].height/($("#mask").height()/4.4);
                 var ctx = document.getElementById("canvas").getContext("2d");
