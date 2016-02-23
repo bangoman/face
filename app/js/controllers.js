@@ -8,6 +8,10 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
     $scope.face = new Image();
     $scope.finalImg = $("#finalImg");
 
+    $scope.tryAgain = function() {
+        $scope.snapShotHasMade = false;
+    };
+
 	$scope.onSuccess = function () {
         _video = $scope.channel.video;
         $scope.$apply(function() {
@@ -39,6 +43,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
     };
 
     $scope.mergeImages = function(){
+
 		$scope.showWebcam = false;
     	$("#picture").faceDetection({
             complete: function (faces) {
@@ -57,6 +62,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
                         console.log($("#mask"));
                         ctx.drawImage(mask, 0, 0, $("#mask").width(), $("#mask").height() ); 
                         $scope.finalImg.attr('src', document.getElementById("canvas").toDataURL("image/jpeg"));
+
                     }, false);
                     mask.src = "img/self.png";    
                 }, false);
