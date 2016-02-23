@@ -1,27 +1,50 @@
-<div class="container">
-    <div class="row">
-        <div style="width:80vw; visibility: hidden" id="mergeContainer">
-            <img id="picture"  src="img/face3.jpg" style="position:absolute;left:0px;top:0px; visibility: hidden">
-            <img id="mask" src="img/self.png" style="position:absolute;top:0px;left:0px;width:40vw; visibility: hidden">
-        </div>
-        
-        <canvas id='canvas' width="1000" height="1000">
-        </canvas>
 
-        <canvas id='canvasDemo' width="1000" height="1000" style="visibility: hidden">
-        </canvas>
-        <img src="#" id="demoImg">
-
-        <!--<div id="my_camera" style="position:absolute;top:0px;left:0px;width:100vw;height:calc(80vw * 0.562);z-index:1000" onClick="take_snapshot()"></div>1-->
-       <webcam 
-            id="webcam"
-            channel="channel" 
-            on-streaming="onSuccess()" 
-            on-error="onError(err)" 
-            on-stream="onStream(stream)"
-            style="vertical-align: baseline;"
-            ></webcam>
-
-        <input type="button" value="Take HD Snapshot" data-ng-click="makeSnapshot()" style="position:absolute;left:100;top:100;z-index:10000">
+<div layout="column" layout-fill>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <span>PAINT MY FACE</span>
+      <!-- fill up the space between left and right area -->
+      <span flex></span>
+      <md-button>
+        Right Bar Button
+      </md-button>
     </div>
+  </md-toolbar>
+  <md-content>
+
+  </md-content>
 </div>
+
+
+
+
+
+
+
+
+
+    <div id="mergeContainer" style="width:80vw; visibility: hidden">
+        <img id="picture"  src="img/face3.jpg" style="position:absolute; ;top:0px; left:0px; visibility: hidden">
+        <img id="mask" src="img/self.png" style="position:absolute; top:0px; left:0px;width:40vw; visibility: hidden">
+    </div>
+
+    <webcam  
+         id="webcam"
+         channel="channel" 
+         on-streaming="onSuccess()" 
+         on-error="onError(err)" 
+         on-stream="onStream(stream)"
+         style="float:right">
+    </webcam>
+
+    <input type="button" value="Take HD Snapshot" data-ng-click="makeSnapshot()" style="position:absolute;left:100;top:100;z-index:10000">
+
+    <canvas id='canvas' width="1000" height="1000">
+    </canvas>
+
+
+
+
+
+
+
