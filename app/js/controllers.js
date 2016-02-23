@@ -1,4 +1,4 @@
-app.controller('faceCtrl', ['$scope', function($scope) {
+app.controller('faceCtrl', ['$scope', '$window', function($scope, $window) {
 	$scope.showWebcam = true;
 	var _video = null,
         patData = null;
@@ -12,17 +12,23 @@ app.controller('faceCtrl', ['$scope', function($scope) {
         });
     };
 
- /*   js.src = "//connect.facebook.net/en_US/sdk.js";
 
     $window.fbAsyncInit = function() {
-        FB.init({ 
-            appId: '{your-app-id}',
-            status: true, 
-            cookie: true, 
-            xfbml: true,
-            version: 'v2.4'
+        FB.init({
+          appId      : '1060878183958426',
+          xfbml      : true,
+          version    : 'v2.5'
         });
-    };*/
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        console.log(js);
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
     
     $scope.makeSnapshot = function() {
@@ -64,7 +70,7 @@ app.controller('faceCtrl', ['$scope', function($scope) {
                 $scope.face.src = $('#picture').attr('src'); 
             },
             error:function (code, message) {
-                alert('Error: ' + message);
+                alert("please put your head in front of the camera");
             }
         });
     };
