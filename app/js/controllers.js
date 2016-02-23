@@ -35,9 +35,12 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
             //$("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
 
-            console.log($scope.patCanvas);
-            $scope.patCanvas.width = 1000;
-            $scope.patCanvas.height = 1000;
+
+            $scope.testMask = new Image();
+            $scope.testMask.src = "img/self.png";
+            console.log($scope.testMask.naturalWidth);
+            $scope.patCanvas.width = $scope.testMask.naturalWidth;
+            $scope.patCanvas.height = $scope.testMask.naturalHeight;
             $scope.mergeImages();
         }
     };
@@ -50,17 +53,17 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
                 if(faces.length > 0){
                     $scope.snapShotHasMade = true;
                 };
-                var x = faces[0].width/($("#mask").width()/5.5);
-                var y = faces[0].height/($("#mask").height()/4.4);
+                var x = faces[0].width/($scope.testMask.naturalWidth/5.5);
+                var y = faces[0].height/($scope.testMask.naturalHeight/4.4);
                 var ctx = document.getElementById("canvas").getContext("2d");
                 $scope.face.addEventListener("load", function() {
-                    ctx.drawImage($scope.face,   $("#mask").width()/1.69 - (faces[0].width/x) - faces[0].x/x ,($("#mask").height()/3.2) - (faces[0].y/x),
+                    ctx.drawImage($scope.face,   $scope.testMask.naturalWidth/1.69 - (faces[0].width/x) - faces[0].x/x ,($scope.testMask.naturalHeight/3.2) - (faces[0].y/x),
                         $('#picture').width()/x, $('#picture').height()/y);
 
                     var mask = new Image();
                     mask.addEventListener("load", function() {
                         console.log($("#mask"));
-                        ctx.drawImage(mask, 0, 0, $("#mask").width(), $("#mask").height() ); 
+                        ctx.drawImage(mask, 0, 0, $scope.testMask.naturalWidth, $scope.testMask.naturalHeight ); 
                         $scope.finalImg.attr('src', document.getElementById("canvas").toDataURL("image/jpeg"));
 
                     }, false);
