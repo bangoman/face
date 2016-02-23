@@ -44,7 +44,12 @@ canvas {
   height: auto;
 }
 
-.snapshot_row {
-  z-index: 10000;
+.images_container img#finalImg {
+  width: inherit;
+}
+
+.images_container .snapshot_row {
+  margin: auto 0;
   /*margin-bottom: -60px;*/
 }
+.images_container .snapshot_row .snapshot_btn
