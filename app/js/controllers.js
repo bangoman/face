@@ -8,18 +8,26 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
     $scope.face = new Image();
     $scope.finalImg = $("#finalImg");
     $scope.userId = null;
+    $scope.accessToken = null;
 
     Facebook.getLoginStatus(function(response) {
         if (response.status === 'connected') {
             $scope.userId = response.authResponse.userID;
             console.log($scope.userId);
-
+            $scope.accessToken = response.authResponse.accessToken;
         } else {
             console.log(response);
         }
      });
 
     $scope.uploadToAlbum = function(){
+        Facebook.login(function(response) {
+            console.log(response);
+        }, {
+            scope: 'publish_actions,user_photos', 
+            return_scopes: true
+        });
+        var blob = dataURItoBlob($scope.finalImg.attr('src'));
         Facebook.api(
             "/" + $scope.userId + "/albums",
             function (response) {
@@ -31,7 +39,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
                         "/" + $scope.album[0].id + "/photos",
                         "POST",
                         {
-                            "source": $scope.finalImg.attr('src')
+                            "source": blob
                         },
                         function (response) {
                           if (response && !response.error) {
@@ -42,6 +50,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
                         }
                     );
                 }else{
+                    console.log(response);
                     FB.api(
                         "/" + $scope.userId + "/albums",
                         "POST",
@@ -90,7 +99,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
             $scope.patCanvas.height = _video.height;
             $scope.ctxPat = $scope.patCanvas.getContext('2d');
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
-            $("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
+    //        $("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
 
 
             $scope.testMask = new Image();
