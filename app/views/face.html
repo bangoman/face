@@ -1,3 +1,27 @@
+<div class="container">
+    <div class="row">
+        <button type="button" id="login" ng-click="login()" >login with facebook</button>
+        <div style="width:80vw; visibility: hidden" id="mergeContainer">
+            <img id="picture"  src="img/face3.jpg" style="position:absolute;left:0px;top:0px; visibility: hidden">
+            <img id="mask" src="img/self.png" style="position:absolute;top:0px;left:0px;width:40vw; visibility: hidden">
+        </div>
+        
+        <canvas id='canvas' width="1000" height="1000">
+        </canvas>
+
+       <webcam 
+            id="webcam"
+            channel="channel" 
+            on-streaming="onSuccess()" 
+            on-error="onError(err)" 
+            on-stream="onStream(stream)"
+            style="vertical-align: baseline;"
+            ></webcam>
+
+        <input type="button" value="Take HD Snapshot" data-ng-click="makeSnapshot()" style="position:absolute;left:100;top:100;z-index:10000">
+    </div>
+</div>
+
 <div layout="column" layout-fill>
   <md-toolbar>
     <div class="md-toolbar-tools">
@@ -34,16 +58,16 @@
 -->
 </div>
 
-<div class="container">
-        <canvas id='canvas' width="1000" height="1000" ng-show="showResults">
+    <div class="container">
+        <canvas id='canvas' width="1000" height="1000" ng-if="showResults">
         </canvas>
         <webcam 
-            ng-show="!showResults"
             id="webcam"
             channel="channel" 
             on-streaming="onSuccess()" 
             on-error="onError(err)" 
-            on-stream="onStream(stream)">
+            on-stream="onStream(stream)"
+            style="width:100%; height:auto;">
             <img src="img/target.png" style="position:relative ;width:inherit; height:auto;">
         </webcam>
         <div class="row">
@@ -67,8 +91,8 @@
 
 
 <!-- NOT VISIBLE but necessary -->
-<div id="mergeContainer" style="width:80vw; ">
-    <img id="picture"  src="img/face3.jpg" style="position:absolute; ;top:0px; left:0px;">
+<div id="mergeContainer" style="width:80vw; visibility: hidden">
+    <img id="picture"  src="img/face3.jpg" style="position:absolute; ;top:0px; left:0px; visibility: hidden">
     <img id="mask" src="img/self.png" style="position:absolute; top:0px; left:0px;width:40vw; visibility: hidden">
 </div>
 
