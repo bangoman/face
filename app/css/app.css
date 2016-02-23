@@ -52,4 +52,11 @@ canvas {
   margin: auto 0;
   /*margin-bottom: -60px;*/
 }
-.images_container .snapshot_row .snapshot_btn
+
+/*.images_container .snapshot_row .snapshot_btn */
+
+.save_btn {
+  background-color: #27A1C8;
+  font-size: 24px;
+  font-weight: bold;
+}
