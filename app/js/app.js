@@ -4,7 +4,8 @@
 var app = angular.module('app', [
   'ngRoute',
   'myApp.version',
-  'webcam'
+  'webcam',
+  'ngMaterial'
 ]);
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/face'});
