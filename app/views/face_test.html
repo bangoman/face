@@ -1,9 +1,9 @@
 
 <div layout="column" layout-fill>
   <md-button ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
-    Take a shoote!
+    Take a shoot!
   </md-button>
-  <md-button ng-click="snapShotHasMade = false" ng-if="snapShotHasMade">
+  <md-button ng-click="!snapShotHasMade" ng-if="snapShotHasMade">
     Try again!
   </md-button>
 </div>
@@ -29,20 +29,20 @@
 -->
 </div>
 
-    <div class="container">
-        <canvas id='canvas' ng-show="snapShotHasMade">
-        </canvas>
-        <webcam 
-            ng-show="!snapShotHasMade"
-            id="webcam"
-            channel="channel" 
-            on-streaming="onSuccess()" 
-            on-error="onError(err)" 
-            on-stream="onStream(stream)"
-            style="width:100%; height:auto;">
-            <img src="img/target.png" style="position:relative ;width:inherit; height:auto;">
-        </webcam>
-    </div>
+<div class="container">
+    <canvas id='canvas' ng-show="snapShotHasMade">
+    </canvas>
+    <webcam 
+        ng-show="!snapShotHasMade"
+        id="webcam"
+        channel="channel" 
+        on-streaming="onSuccess()" 
+        on-error="onError(err)" 
+        on-stream="onStream(stream)"
+        style="width:100%; height:auto;">
+        <img src="img/target.png" style="position:relative ;width:inherit; height:auto;">
+    </webcam>
+</div>
 
 
 
