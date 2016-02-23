@@ -1,4 +1,6 @@
-app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', function($scope, $window, $mdSidenav) {
+app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
+ function($scope, $window, $mdSidenav, Facebook) {
+    $scope.showResults = false;
 	$scope.showWebcam = true;
 	var _video = null,
         patData = null;
@@ -12,11 +14,29 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', function($scope, 
         });
     };
 
+   $scope.login = function () {
+        Facebook.login(function(response) {
+            if (response.status == 'connected') {
+                $scope.connected = true;
+            } else {
+                $scope.connected = false;
+            }
+        });
+    };
+
+    (function() {
+                var e = document.createElement('script'); e.async = true;
+                e.src = document.location.protocol +
+                    '//connect.facebook.net/en_US/all.js';
+                document.getElementById('fb-root').appendChild(e);
+            }());
+
     $scope.openLeftMenu = function() {
         $mdSidenav('left').toggle();
     };
 
     $scope.makeSnapshot = function() {
+        $scope.showResults = true;
         if (_video) {
             $scope.patCanvas = document.querySelector('#canvas');
             if (!$scope.patCanvas) return;
