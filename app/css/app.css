@@ -68,11 +68,10 @@ video {
   font-size: 24px;
   font-weight: bold;
 }
-
 .bottom_buttons .save_btn {
   background-color: #27A1C8;
 }
 .bottom_buttons .try_again_btn {  
-  background-color: #FF5F5C;
+  background-color: #5CFFE1;
 }
 
