@@ -13,13 +13,36 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
         if (response.status === 'connected') {
             $scope.userId = response.authResponse.userID;
             console.log($scope.userId);
-            //var accessToken = response.authResponse.accessToken;
-        } else if (response.status === 'not_authorized') {
-            console.log(response);
+
+            Facebook.api(
+                "/" + $scope.userId + "/albums",
+                function (response) {
+                  if (response && !response.error) {
+                    console.log(response);
+
+                  }else{
+                    console.log(response);
+                  };
+                }
+            );
         } else {
             console.log(response);
         }
      });
+
+    $scope.uploadToAlbum = function(){
+        Facebook.api(
+            "/" + $scope.userId + "/albums",
+            function (response) {
+              if (response && !response.error) {
+                console.log(response);
+
+              }else{
+                console.log(response);
+              };
+            }
+        );
+    };
 
     $scope.tryAgain = function() {
         $scope.snapShotHasMade = false;
