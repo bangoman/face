@@ -39,11 +39,20 @@ video {
     vertical-align: baseline;
 }
 
-canvas {
-  width: inherit;
-  height: auto;
+#webcam {
+  width:100%;
+  height:auto;
+  cursor: pointer;
 }
 
+.snapshot_text {
+  text-align: center;
+  font-size: 25px;
+}
+
+.images_container {
+  margin-bottom: 20px;
+}
 .images_container img#finalImg {
   width: inherit;
 }
@@ -55,8 +64,15 @@ canvas {
 
 /*.images_container .snapshot_row .snapshot_btn */
 
-.save_btn {
-  background-color: #27A1C8;
+.bottom_buttons .btn {
   font-size: 24px;
   font-weight: bold;
 }
+
+.bottom_buttons .save_btn {
+  background-color: #27A1C8;
+}
+.bottom_buttons .try_again_btn {  
+  background-color: #FF5F5C;
+}
+
