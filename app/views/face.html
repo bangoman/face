@@ -1,7 +1,7 @@
 
 <div layout="column" layout-fill>
   <md-button ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
-    Take a shoote!
+    Take a shoot!
   </md-button>
   <md-button ng-click="snapShotHasMade = false" ng-if="snapShotHasMade">
     Try again!
@@ -29,28 +29,20 @@
 -->
 </div>
 
-    <div class="container">
-        <canvas id='canvas' ng-show="snapShotHasMade">
-        </canvas>
-        <webcam 
-            ng-show="!snapShotHasMade"
-            id="webcam"
-            channel="channel" 
-            on-streaming="onSuccess()" 
-            on-error="onError(err)" 
-            on-stream="onStream(stream)"
-            style="width:100%; height:auto;">
-            <img src="img/target.png" style="position:relative ;width:inherit; height:auto;">
-        </webcam>
-        <div class="row">
-          <div class="col-md-4 col-md-push-4">
-            <md-button ng-click="snapShotHasMade = false">
-              Try again!
-            </md-button>
-          </div>
-        </div>
-    </div>
+<div class="container">
+    <img id="finalImg" src="">
+    <webcam 
+        ng-show="!snapShotHasMade"
+        id="webcam"
+        channel="channel" 
+        on-streaming="onSuccess()" 
+        on-error="onError(err)" 
+        on-stream="onStream(stream)"
+        style="width:100%; height:auto;">
+        <img src="img/target.png" style="position:relative ;width:inherit; height:auto;">
+    </webcam>
 </div>
+
 
 
 
@@ -59,3 +51,6 @@
     <img id="picture"  src="img/face3.jpg" style="position:absolute; ;top:0px; left:0px; visibility: hidden">
     <img id="mask" src="img/self.png" style="position:absolute; top:0px; left:0px;width:40vw; visibility: hidden">
 </div>
+
+<canvas id='canvas' ng-show="false">
+</canvas>
