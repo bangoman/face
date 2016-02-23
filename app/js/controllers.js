@@ -6,6 +6,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
         patData = null;
     $scope.patOpts = {x: 0, y: 0, w: 25, h: 25};
     $scope.face = new Image();
+    $scope.finalImg = $("#finalImg");
 
 	$scope.onSuccess = function () {
         _video = $scope.channel.video;
@@ -30,7 +31,7 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
             $scope.ctxPat.drawImage(_video, 0, 0, _video.width, _video.height);
             //$("#picture").attr('src', $scope.patCanvas.toDataURL("image/jpeg"));
 
-
+            console.log($scope.patCanvas);
             $scope.patCanvas.width = 1000;
             $scope.patCanvas.height = 1000;
             $scope.mergeImages();
@@ -54,7 +55,8 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook',
                     var mask = new Image();
                     mask.addEventListener("load", function() {
                         console.log($("#mask"));
-                        ctx.drawImage(mask, 0, 0, $("#mask").width(), $("#mask").height() );                        
+                        ctx.drawImage(mask, 0, 0, $("#mask").width(), $("#mask").height() ); 
+                        $scope.finalImg.attr('src', document.getElementById("canvas").toDataURL("image/jpeg"));
                     }, false);
                     mask.src = "img/self.png";    
                 }, false);
