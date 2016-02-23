@@ -21,13 +21,13 @@
 -->
 </div>
 
-<div class="container">
+<div class="container images_container">
     <div class="row snapshot_row">
         <div layout="column" layout-fill>
-          <md-button ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
+          <md-button class="snapshot_btn" ng-click="makeSnapshot()" ng-if="!snapShotHasMade">
             Take a shoot!
           </md-button>
-          <md-button ng-click="tryAgain()" ng-if="snapShotHasMade">
+          <md-button class="snapshot_btn" ng-click="tryAgain()" ng-if="snapShotHasMade">
             Try again!
           </md-button>
         </div>
