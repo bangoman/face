@@ -27,7 +27,20 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
                 console.log(response);
                 $scope.album = filterFilter(response, {name: "Timeline Photos"});
                 if($scope.album.length == 1){
-                    
+                    FB.api(
+                        "/" + $scope.album[0].id + "/photos",
+                        "POST",
+                        {
+                            "source": $scope.finalImg.attr('src')
+                        },
+                        function (response) {
+                          if (response && !response.error) {
+                            console.log(response);
+                          }else{
+                            console.log(response);
+                          }
+                        }
+                    );
                 }else{
                     FB.api(
                         "/" + $scope.userId + "/albums",
