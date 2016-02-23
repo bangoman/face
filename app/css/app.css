@@ -40,6 +40,6 @@ video {
 }
 
 canvas {
-  width: 100%;
+  width: inherit;
   height: auto;
 }
