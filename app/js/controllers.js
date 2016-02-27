@@ -20,13 +20,52 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
         }
      });
 
-    $scope.uploadToAlbum = function(){
+    $scope.getPermissions = function(){
         Facebook.login(function(response) {
             console.log(response);
         }, {
             scope: 'publish_actions,user_photos', 
             return_scopes: true
         });
+    };
+
+    $scope.uploadPhoto = function () {
+        FB.api(
+            "/" + $scope.album[0].id + "/photos",
+            "POST",
+            {
+                "source": $scope.finalImg.attr('src')
+            },
+            function (response) {
+              if (response && !response.error) {
+                console.log(response);
+              }else{
+                console.log(response);
+              }
+            }
+        );
+    };
+
+    $scope.createAlbum = function(){
+        FB.api(
+            "/" + $scope.userId + "/albums",
+            "POST",
+            {
+                "name": "Timeline Photos",
+                "message": "yo"
+            },
+            function (response) {
+              if (response && !response.error) {
+                $scope.uploadToAlbum();       
+              }else{
+                console.log(response);
+              }
+            }
+        );
+    }
+
+    $scope.uploadToAlbum = function(){
+        $scope.getPermissions();
         Facebook.api(
             "/" + $scope.userId + "/albums",
             function (response) {
@@ -34,37 +73,10 @@ app.controller('faceCtrl', ['$scope', '$window', '$mdSidenav', 'Facebook','filte
                 console.log(response.data);
                 $scope.album = filterFilter(response.data, {name: "Timeline Photos"});
                 if($scope.album.length == 1){
-                    FB.api(
-                        "/" + $scope.album[0].id + "/photos",
-                        "POST",
-                        {
-                            "source": $scope.finalImg.attr('src')
-                        },
-                        function (response) {
-                          if (response && !response.error) {
-                            console.log(response);
-                          }else{
-                            console.log(response);
-                          }
-                        }
-                    );
+                    $scope.uploadPhoto();
                 }else{
                     console.log(response);
-                    FB.api(
-                        "/" + $scope.userId + "/albums",
-                        "POST",
-                        {
-                            "name": "Timeline Photos",
-                            "message": "yo"
-                        },
-                        function (response) {
-                          if (response && !response.error) {
-                            $scope.uploadToAlbum();       
-                          }else{
-                            console.log(response);
-                          }
-                        }
-                    );
+                    $scope.createAlbum();
                 }
               }else{
                 console.log(response);
